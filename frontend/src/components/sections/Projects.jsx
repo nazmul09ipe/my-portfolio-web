@@ -1,37 +1,68 @@
-import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
-import { HiExternalLink, HiCode } from 'react-icons/hi';
-import { SectionHeading } from '@/components/ui/SectionHeading';
-import { GlassCard } from '@/components/ui/GlassCard';
-import { useScrollAnimation } from '@/hooks/useScrollAnimation';
-import { fetchProjects } from '@/services/projectService';
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
+import { HiExternalLink, HiCode } from "react-icons/hi";
+import { SectionHeading } from "@/components/ui/SectionHeading";
+import { GlassCard } from "@/components/ui/GlassCard";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { fetchProjects } from "@/services/projectService";
 
 const fallbackProjects = [
   {
-    _id: '1',
-    title: 'E-Commerce MERN Platform',
-    description: 'Full-stack online store with cart, JWT auth, and admin dashboard.',
-    technologies: ['React', 'Node.js', 'MongoDB', 'Tailwind'],
-    liveUrl: '#',
-    repoUrl: '#',
+    _id: "1",
+    title: "A Human Resource Management App",
+    description:
+      "A fully responsive and secure HR management platform built with React and Vite. It enables employee management, workflow tracking, and user administration with Firebase authentication and REST API integration.",
+    technologies: [
+      "React",
+      "Firebase",
+      "Framer Motion",
+      "Node.js",
+      "MongoDB",
+      "Tailwind CSS",
+    ],
+    image: "https://i.ibb.co.com/pBPcdcjn/Screenshot-2026-06-02-155005.png",
+    liveUrl: "https://staff-sphere-hr-management-app.web.app/",
+    repoUrl: "https://github.com/nazmul09ipe/staff-sphere-hr-management-app",
     featured: true,
   },
   {
-    _id: '2',
-    title: 'Task Management Dashboard',
-    description: 'Kanban board with Firebase auth and real-time updates.',
-    technologies: ['React', 'Firebase', 'Framer Motion'],
-    liveUrl: '#',
-    repoUrl: '#',
+    _id: "2",
+    title: "Smart Plant Care Management System",
+    description:
+      "PlantaCare is a modern Smart Plant Care Management System that helps users track plants, manage care schedules, monitor plant health, and connect with plant experts through an intuitive and responsive interface.",
+    technologies: [
+      "React",
+      "React Router",
+      "Tailwind CSS",
+      "Firebase",
+      "Framer Motion",
+      "Node.js",
+      "Express",
+      "MongoDB",
+    ],
+    image: "https://i.ibb.co.com/vC93gQRq/Screenshot-2026-06-02-155053.png",
+    liveUrl: "https://plant-tracker-web-app-c73a3.web.app/",
+    repoUrl: "https://github.com/nazmul09ipe/plantacare-app-client-side",
     featured: true,
   },
   {
-    _id: '3',
-    title: 'REST API Boilerplate',
-    description: 'Production-ready Express API with MongoDB and rate limiting.',
-    technologies: ['Node.js', 'Express', 'MongoDB'],
-    liveUrl: '#',
-    repoUrl: '#',
+    _id: "3",
+    title: "HappenHub – Event Explorer & Ticket Management System",
+    description:
+      "HappenHub is a modern Event Discovery and Ticket Management System that allows users to explore upcoming local and virtual events, view event details and schedules, and securely book tickets through a seamless digital experience.",
+    technologies: [
+      "React",
+      "React Router",
+      "Tailwind CSS",
+      "Firebase",
+      "Framer Motion",
+      "Node.js",
+      "Express",
+      "MongoDB",
+    ],
+    image: "https://i.ibb.co.com/5Wbdw9Mc/Screenshot-2026-06-02-155115.png",
+    liveUrl: "https://event-explorer-36aac.web.app/",
+    repoUrl: "https://github.com/nazmul09ipe/Assignment-9-event-explorer",
     featured: true,
   },
 ];
@@ -59,16 +90,21 @@ export function Projects() {
           <p className="text-center text-slate-500 mb-8">Loading projects...</p>
         )}
 
-        <div ref={ref} className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+        <div
+          ref={ref}
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
+        >
           {projects.map((project, i) => (
-            <GlassCard key={project._id || i} className="flex flex-col h-full group">
-              <div className="aspect-video rounded-xl bg-linear-to-br from-brand-500/15 via-accent-purple-600/15 to-accent-cyan-500/15 mb-6 flex items-center justify-center overflow-hidden border border-white/[0.06] group-hover:shadow-glow-sm transition-shadow duration-500">
-                <motion.div
-                  className="text-6xl font-display font-bold gradient-text opacity-60"
-                  whileHover={{ scale: 1.1, rotate: 5 }}
-                >
-                  {project.title.charAt(0)}
-                </motion.div>
+            <GlassCard
+              key={project._id || i}
+              className="flex flex-col h-full group"
+            >
+              <div className="aspect-video overflow-hidden rounded-xl border border-white/[0.06] mb-6">
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                />
               </div>
 
               <h3 className="font-display text-xl font-bold mb-3 tracking-tight group-hover:gradient-text transition-all duration-300">
@@ -90,7 +126,7 @@ export function Projects() {
               </div>
 
               <div className="flex gap-4 mt-auto">
-                {project.liveUrl && project.liveUrl !== '#' && (
+                {project.liveUrl && project.liveUrl !== "#" && (
                   <a
                     href={project.liveUrl}
                     target="_blank"

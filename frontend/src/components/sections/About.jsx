@@ -29,7 +29,7 @@ export function About() {
   return (
     <section id="about" className="section-padding">
       <div className="container-custom">
-        <SectionHeading subtitle="About Me" title="Who I Am" />
+        <SectionHeading subtitle="About Me" title="Who am I" />
 
         <div ref={ref} className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
           <GlassCard>
