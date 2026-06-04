@@ -1,4 +1,4 @@
-import { seedProjects, seedSkills } from '../data/seedData.js';
+import { seedProjects,seedSkills} from '../data/seedData.js';
 
 export const getFallbackProjects = (featured) => {
   if (featured === 'true') {

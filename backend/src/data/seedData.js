@@ -54,3 +54,35 @@ export const seedProjects = [
     category: 'fullstack',
   },
 ];
+
+
+export const seedSkills = [
+  {
+    name: 'React',
+    category: 'Frontend',
+  },
+  {
+    name: 'JavaScript',
+    category: 'Frontend',
+  },
+  {
+    name: 'Node.js',
+    category: 'Backend',
+  },
+  {
+    name: 'Express',
+    category: 'Backend',
+  },
+  {
+    name: 'MongoDB',
+    category: 'Database',
+  },
+  {
+    name: 'Firebase',
+    category: 'Backend',
+  },
+  {
+    name: 'Tailwind CSS',
+    category: 'Frontend',
+  },
+];

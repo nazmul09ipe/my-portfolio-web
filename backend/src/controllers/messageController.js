@@ -1,27 +1,30 @@
 import { Message } from '../models/Message.js';
 import { ApiError } from '../utils/ApiError.js';
 import { dbConnected } from '../config/db.js';
+import { sendEmail } from '../utils/sendEmail.js';
 
-export const createMessage = async (req, res, next) => {
+export const createMessage = async (req, res) => {
   try {
     const { name, email, subject, message } = req.body;
-    if (!name || !email || !message) {
-      throw new ApiError(400, 'Name, email, and message are required');
-    }
 
-    if (!dbConnected) {
-      console.log('[dev] Contact message received (not persisted):', { name, email, subject });
-      return res.status(201).json({
-        success: true,
-        data: { name, email, subject, message },
-        message: 'Message received (dev mode — MongoDB not connected)',
-      });
-    }
+    await sendEmail({
+      name,
+      email,
+      subject,
+      message,
+    });
 
-    const doc = await Message.create({ name, email, subject, message });
-    res.status(201).json({ success: true, data: doc, message: 'Message sent successfully' });
-  } catch (err) {
-    next(err);
+    res.status(201).json({
+      success: true,
+      message: 'Email sent successfully',
+    });
+  } catch (error) {
+    console.error(error);
+
+    res.status(500).json({
+      success: false,
+      message: 'Failed to send email',
+    });
   }
 };
 
