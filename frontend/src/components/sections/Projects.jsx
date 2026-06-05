@@ -16,6 +16,7 @@ const fallbackProjects = [
       "React",
       "Firebase",
       "Framer Motion",
+      "Stripe gateway",
       "Node.js",
       "MongoDB",
       "Tailwind CSS",

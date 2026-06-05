@@ -11,8 +11,11 @@ export const seedProjects = [
       'MongoDB',
       'Tailwind CSS',
     ],
+    image:
+      'https://i.ibb.co/pBPcdcjn/Screenshot-2026-06-02-155005.png',
     liveUrl: 'https://staff-sphere-hr-management-app.web.app/',
-    repoUrl: 'https://github.com/nazmul09ipe/staff-sphere-hr-management-app',
+    repoUrl:
+      'https://github.com/nazmul09ipe/staff-sphere-hr-management-app',
     featured: true,
     order: 1,
     category: 'fullstack',
@@ -29,8 +32,11 @@ export const seedProjects = [
       'MongoDB',
       'Tailwind CSS',
     ],
+    image:
+      'https://i.ibb.co/vC93gQRq/Screenshot-2026-06-02-155053.png',
     liveUrl: 'https://plant-tracker-web-app-c73a3.web.app/',
-    repoUrl: 'https://github.com/nazmul09ipe/plantacare-app-client-side',
+    repoUrl:
+      'https://github.com/nazmul09ipe/plantacare-app-client-side',
     featured: true,
     order: 2,
     category: 'fullstack',
@@ -47,14 +53,16 @@ export const seedProjects = [
       'MongoDB',
       'Tailwind CSS',
     ],
+    image:
+      'https://i.ibb.co/5Wbdw9Mc/Screenshot-2026-06-02-155115.png',
     liveUrl: 'https://event-explorer-36aac.web.app/',
-    repoUrl: 'https://github.com/nazmul09ipe/Assignment-9-event-explorer',
+    repoUrl:
+      'https://github.com/nazmul09ipe/Assignment-9-event-explorer',
     featured: true,
     order: 3,
     category: 'fullstack',
   },
 ];
-
 
 export const seedSkills = [
   {
