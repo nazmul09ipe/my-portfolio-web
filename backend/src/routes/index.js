@@ -2,6 +2,7 @@ import { Router } from 'express';
 import projectRoutes from './projectRoutes.js';
 import messageRoutes from './messageRoutes.js';
 import skillRoutes from './skillRoutes.js';
+import app from '../src/app.js';
 
 const router = Router();
 
