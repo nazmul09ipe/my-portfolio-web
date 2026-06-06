@@ -7,6 +7,12 @@ import routes from './routes/index.js';
 import { notFound, errorHandler } from './middleware/errorHandler.js';
 
 const app = express();
+app.get('/', (req, res) => {
+  res.json({
+    success: true,
+    message: 'Portfolio API is running',
+  });
+});
 
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
