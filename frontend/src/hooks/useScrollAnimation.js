@@ -27,28 +27,30 @@ export function useScrollAnimation(options = {}) {
       { 
         y, 
         opacity,
-        scale: options.scale || 1,
-        rotateX: options.rotateX || 0
+        scale: options.scale || 0.95,
+        rotateX: options.rotateX || 10
       },
       {
         y: 0,
         opacity: 1,
         scale: 1,
         rotateX: 0,
-        duration,
+        duration: duration || 1.2,
         delay,
-        stagger: children ? stagger || 0.12 : 0,
+        stagger: children ? stagger || 0.1 : 0,
         ease: 'expo.out',
         scrollTrigger: {
           trigger: el,
-          start,
+          start: start || 'top 90%',
           toggleActions: 'play none none reverse',
           onEnter: () => {
             if (options.scrub) return;
             gsap.to(targets, { 
               opacity: 1, 
               y: 0, 
-              stagger: children ? stagger || 0.12 : 0 
+              scale: 1,
+              rotateX: 0,
+              stagger: children ? stagger || 0.1 : 0 
             });
           }
         },

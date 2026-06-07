@@ -34,21 +34,32 @@
   --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   --font-display: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
 
-  --text-display-2xl: clamp(3.5rem, 8vw, 6rem);
-  --text-display-xl: clamp(3rem, 7vw, 5rem);
-  --text-display-lg: clamp(2.5rem, 6vw, 4rem);
-  --text-display-md: clamp(2rem, 5vw, 3rem);
-  --text-display-sm: clamp(1.5rem, 4vw, 2.25rem);
+  --text-display-2xl: clamp(4rem, 10vw, 8rem);
+  --text-display-xl: clamp(3.5rem, 8vw, 6.5rem);
+  --text-display-lg: clamp(3rem, 7vw, 5rem);
+  --text-display-md: clamp(2.25rem, 5vw, 3.5rem);
+  --text-display-sm: clamp(1.75rem, 4vw, 2.5rem);
 
-  --tracking-tighter: -0.05em;
-  --tracking-tight: -0.03em;
-  --tracking-wide: 0.05em;
-  --tracking-widest: 0.15em;
+  --tracking-tighter: -0.06em;
+  --tracking-tight: -0.04em;
+  --tracking-wide: 0.08em;
+  --tracking-widest: 0.2em;
 
-  /* ── Void (black) — Refined for deeper contrast ── */
-  --color-void-950: #020203;
-  --color-void-900: #050507;
-  --color-void-800: #0a0a0f;
+  /* ── Futuristic Palette ── */
+  --color-void-950: #010103;
+  --color-void-900: #040408;
+  --color-void-800: #080812;
+  
+  --color-brand-500: #3b82f6;
+  --color-brand-600: #2563eb;
+  
+  --color-accent-primary: #3b82f6;
+  --color-accent-secondary: #8b5cf6;
+  --color-accent-tertiary: #22d3ee;
+  
+  --ease-apple: cubic-bezier(0.28, 0.11, 0.32, 1);
+  --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+  --ease-in-out-expo: cubic-bezier(1, 0, 0, 1);
 
   /* ── Navy (deep surfaces) ── */
   --color-navy-950: #050a14;
@@ -231,17 +242,23 @@ a, button {
 }
 
 /* ── Refined Glassmorphism ── */
-.glass {
-  @apply backdrop-blur-2xl border;
-  @apply bg-white/45 border-white/30 shadow-glass;
-  @apply dark:bg-navy-900/40 dark:border-white/[0.05];
-}
+ .glass {
+   @apply backdrop-blur-3xl border;
+   @apply bg-white/40 border-white/20 shadow-glass;
+   @apply dark:bg-void-950/40 dark:border-white/[0.04];
+ }
+ 
+ .glass-premium {
+   @apply backdrop-blur-[40px] border;
+   @apply bg-white/50 border-white/30 shadow-elevated;
+   @apply dark:bg-void-900/50 dark:border-white/[0.06] dark:shadow-glow-sm;
+ }
 
-.glass-premium {
-  @apply backdrop-blur-3xl border;
-  @apply bg-white/60 border-white/40 shadow-elevated;
-  @apply dark:bg-navy-900/60 dark:border-white/[0.08] dark:shadow-glow-sm;
-}
+ .glass-navbar {
+   @apply backdrop-blur-2xl border-b;
+   @apply bg-white/70 border-white/20;
+   @apply dark:bg-void-950/70 dark:border-white/[0.03];
+ }
 
 /* ── Gradient text ── */
 .gradient-text {

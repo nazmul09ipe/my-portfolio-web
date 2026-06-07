@@ -4,6 +4,7 @@ import { Toaster } from 'react-hot-toast';
 import { ThemeProvider } from '@/context/ThemeContext';
 import { AuthProvider } from '@/context/AuthContext';
 import { MainLayout } from '@/layouts/MainLayout';
+import { PageLoader } from '@/components/common/PageLoader';
 
 const HomePage = lazy(() =>
   import('@/pages/HomePage').then((m) => ({ default: m.HomePage }))
@@ -12,20 +13,13 @@ const NotFoundPage = lazy(() =>
   import('@/pages/NotFoundPage').then((m) => ({ default: m.NotFoundPage }))
 );
 
-function PageLoader() {
-  return (
-    <div className="min-h-screen flex items-center justify-center bg-void-950">
-      <div className="w-12 h-12 rounded-full border-2 border-brand-500/20 border-t-brand-500 border-r-accent-purple-500 animate-spin shadow-glow-sm" />
-    </div>
-  );
-}
-
 export default function App() {
   return (
     <ThemeProvider>
       <AuthProvider>
+        <PageLoader />
         <BrowserRouter>
-          <Suspense fallback={<PageLoader />}>
+          <Suspense fallback={null}>
             <Routes>
               <Route element={<MainLayout />}>
                 <Route index element={<HomePage />} />
@@ -36,7 +30,7 @@ export default function App() {
           <Toaster
             position="bottom-right"
             toastOptions={{
-              className: 'glass-strong !text-slate-800 dark:!text-slate-100 shadow-glow-sm',
+              className: 'glass-premium !text-slate-800 dark:!text-slate-100 shadow-glow-sm',
               duration: 4000,
             }}
           />

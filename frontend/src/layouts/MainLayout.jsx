@@ -5,11 +5,13 @@ import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
 import { ScrollToTop } from '@/components/layout/ScrollToTop';
 import { CustomCursor } from '@/components/ui/CustomCursor';
+import { MouseGlow } from '@/components/ui/MouseGlow';
 
 export function MainLayout() {
   return (
     <>
       <CustomCursor />
+      <MouseGlow />
       <div className="noise-overlay" aria-hidden="true" />
       <AnimatedBackground />
       <FloatingParticles />

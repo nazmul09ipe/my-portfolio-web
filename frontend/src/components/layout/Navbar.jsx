@@ -52,12 +52,12 @@ export function Navbar() {
     <motion.header
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+      transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 2.8 }}
       className={cn(
-        'fixed top-0 left-0 right-0 z-50 transition-all duration-500',
+        'fixed top-0 left-0 right-0 z-50 transition-all duration-700',
         scrolled
-          ? 'py-3 backdrop-blur-2xl bg-white/70 dark:bg-void-950/75 border-b border-white/20 dark:border-white/[0.06] shadow-glass'
-          : 'py-5 bg-transparent'
+          ? 'py-4 glass-navbar shadow-2xl'
+          : 'py-8 bg-transparent'
       )}
       style={{ transitionTimingFunction: 'var(--ease-premium)' }}
     >
