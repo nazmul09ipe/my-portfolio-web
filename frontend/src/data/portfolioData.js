@@ -9,7 +9,7 @@ export const siteConfig = {
   github: 'https://github.com/nazmul09ipe',
   linkedin: 'https://www.linkedin.com/in/md-nazmul-haque-130537105/',
   twitter: 'https://twitter.com',
-  resumeUrl: '/resume.pdf',
+  resumeUrl: '/cv.pdf',
   yearsExperience: 2,
   profileImage: '/profile.jpg',
 };

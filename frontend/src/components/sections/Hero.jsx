@@ -102,7 +102,7 @@ export function Hero() {
           <Button 
             variant="secondary" 
             href={siteConfig.resumeUrl} 
-            download="resume.pdf"
+            download="Md_Nazmul_Haque_Resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="glass !px-8 !py-5 text-sm uppercase tracking-widest font-black"

@@ -231,7 +231,7 @@ export function Navbar() {
                 </div>
                 <a
                   href={siteConfig.resumeUrl}
-                  download="resume.pdf"
+                  download="Md_Nazmul_Haque_Resume.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-primary !px-4 !py-2 !text-xs ml-auto"
