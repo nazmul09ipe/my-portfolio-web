@@ -43,10 +43,13 @@ export function Contact() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmitting(true);
-    const toastId = toast.loading("Sending your message...");
+    const toastId = toast.loading("Sending your transmission to the digital core...");
     try {
       await sendMessage(form);
-      toast.success("Message sent! I will get back to you soon.", { id: toastId });
+      toast.success("Transmission Received! I will reach out shortly.", { 
+        id: toastId,
+        icon: '🚀',
+      });
       setForm(initialForm);
     } catch (err) {
       console.error("Contact Form Error:", err);
