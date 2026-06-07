@@ -55,13 +55,14 @@ export function About() {
               {highlights.map((item) => (
                 <motion.div
                   key={item.title}
-                  className="glass-premium rounded-2xl p-6 flex flex-col gap-4 border border-white/5 dark:border-white/10 hover:shadow-glow-sm transition-all duration-500 sm:last:col-span-2"
-                  whileHover={{ y: -4 }}
+                  className="glass-premium rounded-2xl p-6 flex flex-col gap-4 border border-white/5 dark:border-white/10 hover:shadow-glow-sm transition-all duration-500 sm:last:col-span-2 group"
+                  whileHover={{ y: -4, rotateX: 5, rotateY: -5 }}
+                  style={{ transformStyle: 'preserve-3d' }}
                 >
-                  <div className="p-3 w-fit rounded-xl bg-slate-100 dark:bg-white/5 text-brand-500 dark:text-accent-cyan-400">
+                  <div className="p-3 w-fit rounded-xl bg-slate-100 dark:bg-white/5 text-brand-500 dark:text-accent-cyan-400 group-hover:scale-110 transition-transform duration-500" style={{ translateZ: '30px' }}>
                     <item.icon className="w-6 h-6" />
                   </div>
-                  <div>
+                  <div style={{ translateZ: '20px' }}>
                     <h3 className="font-display font-bold text-lg mb-2 tracking-tight">
                       {item.title}
                     </h3>
@@ -75,23 +76,26 @@ export function About() {
 
             <motion.div 
               className="glass-premium rounded-2xl p-8 border border-white/5 dark:border-white/10 relative overflow-hidden group"
-              whileHover={{ y: -4 }}
+              whileHover={{ y: -4, rotateX: -5, rotateY: 5 }}
+              style={{ transformStyle: 'preserve-3d' }}
             >
-              <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
+              <div className="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity" style={{ translateZ: '10px' }}>
                 <HiBriefcase className="w-24 h-24" />
               </div>
-              <p className="text-[10px] uppercase font-bold tracking-[0.2em] text-slate-500 mb-3">
-                Industry Experience
-              </p>
-              <div className="flex items-baseline gap-2">
-                <p className="font-display text-5xl font-black gradient-text tracking-tighter">
-                  {siteConfig.yearsExperience}+
+              <div style={{ translateZ: '40px' }}>
+                <p className="text-[10px] uppercase font-bold tracking-[0.2em] text-slate-500 mb-3">
+                  Industry Experience
                 </p>
-                <p className="text-xl font-bold text-navy-800 dark:text-slate-200">Years</p>
+                <div className="flex items-baseline gap-2">
+                  <p className="font-display text-5xl font-black gradient-text tracking-tighter">
+                    {siteConfig.yearsExperience}+
+                  </p>
+                  <p className="text-xl font-bold text-navy-800 dark:text-slate-200">Years</p>
+                </div>
+                <p className="text-slate-600 dark:text-slate-400 text-sm mt-3 font-medium">
+                  Specializing in high-performance React ecosystems and scalable backend architectures.
+                </p>
               </div>
-              <p className="text-slate-600 dark:text-slate-400 text-sm mt-3 font-medium">
-                Specializing in high-performance React ecosystems and scalable backend architectures.
-              </p>
             </motion.div>
           </div>
         </div>

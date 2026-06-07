@@ -105,6 +105,7 @@ export function Projects() {
               <GlassCard 
                 key={project._id} 
                 premium 
+                tilt
                 className={cn(
                   "flex flex-col h-full group transition-all duration-500",
                   isFeatured ? "lg:col-span-8 md:col-span-12" : "lg:col-span-4 md:col-span-6"

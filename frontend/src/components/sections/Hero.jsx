@@ -50,31 +50,32 @@ export function Hero() {
   return (
     <section id="home" ref={containerRef} className="section-padding min-h-screen flex items-center pt-24 overflow-hidden">
       <div ref={headlineRef} className="container-custom grid lg:grid-cols-2 gap-12 lg:gap-16 items-center lg:items-start relative z-10">
-        <motion.div style={{ opacity }}>
+        <motion.div style={{ opacity, transformStyle: 'preserve-3d', perspective: '1000px' }}>
         <motion.span
           className="hero-badge badge-glow mb-8"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
+          style={{ translateZ: '20px' }}
         >
           <span className="w-2 h-2 rounded-full bg-accent-cyan-400 animate-pulse shadow-[0_0_8px_rgba(34,211,238,0.8)]" />
           Available for opportunities
         </motion.span>
 
-        <p className="hero-line text-sm uppercase tracking-[0.2em] font-semibold text-slate-500 dark:text-slate-500 mb-4">
+        <p className="hero-line text-sm uppercase tracking-[0.2em] font-semibold text-slate-500 dark:text-slate-500 mb-4" style={{ translateZ: '30px' }}>
           Hello, I&apos;m
         </p>
-        <h1 className="hero-line font-display text-display-xl md:text-display-2xl font-bold leading-[1.05] tracking-tighter mb-6 text-balance">
+        <h1 className="hero-line font-display text-display-xl md:text-display-2xl font-bold leading-[1.05] tracking-tighter mb-6 text-balance" style={{ translateZ: '50px' }}>
           <span className="gradient-text">{siteConfig.name}</span>
         </h1>
-        <h2 className="hero-line text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight text-navy-800 dark:text-slate-200 mb-8 text-balance">
+        <h2 className="hero-line text-2xl sm:text-3xl md:text-4xl font-semibold tracking-tight text-navy-800 dark:text-slate-200 mb-8 text-balance" style={{ translateZ: '40px' }}>
           {siteConfig.title}
         </h2>
-        <p className="hero-line max-w-xl text-lg md:text-xl leading-relaxed text-slate-600 dark:text-slate-400 mb-10 text-balance">
+        <p className="hero-line max-w-xl text-lg md:text-xl leading-relaxed text-slate-600 dark:text-slate-400 mb-10 text-balance" style={{ translateZ: '30px' }}>
           {siteConfig.tagline}. I craft digital experiences that merge <span className="text-brand-500 font-medium">technical excellence</span> with <span className="text-accent-purple-500 font-medium">modern aesthetics</span>.
         </p>
 
-        <div className="hero-line flex flex-wrap gap-4 mb-16">
+        <div className="hero-line flex flex-wrap gap-4 mb-16" style={{ translateZ: '20px' }}>
           <Button href="#contact" className="shadow-glow-sm hover:shadow-glow-md transition-shadow">
             Let&apos;s Talk
           </Button>
@@ -92,11 +93,11 @@ export function Hero() {
           </div>
         </div>
 
-        <div className="hero-line grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="hero-line grid grid-cols-2 md:grid-cols-4 gap-4" style={{ translateZ: '10px' }}>
           {stats.map((stat) => (
             <motion.div
               key={stat.label}
-              whileHover={{ y: -5 }}
+              whileHover={{ y: -5, translateZ: '30px' }}
               className="glass-premium rounded-2xl p-5 text-center transition-all duration-300 border-white/5 dark:border-white/10"
             >
               <div className="font-display text-2xl md:text-3xl font-bold gradient-text tracking-tighter">

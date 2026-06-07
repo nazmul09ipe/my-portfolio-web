@@ -80,6 +80,7 @@ export function Skills() {
                       <GlassCard 
                         key={skill.name} 
                         premium 
+                        tilt
                         className={cn(
                           "!p-6 flex flex-col justify-between group",
                           isLarge ? "lg:col-span-4 md:col-span-6" : "lg:col-span-3 md:col-span-6"
