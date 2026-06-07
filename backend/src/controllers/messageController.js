@@ -3,28 +3,40 @@ import { ApiError } from '../utils/ApiError.js';
 import { dbConnected } from '../config/db.js';
 import { sendEmail } from '../utils/sendEmail.js';
 
-export const createMessage = async (req, res) => {
+export const createMessage = async (req, res, next) => {
   try {
     const { name, email, subject, message } = req.body;
 
-    await sendEmail({
+    // 1. Save to database first (so it's never lost)
+    const newMessage = await Message.create({
       name,
       email,
       subject,
       message,
     });
 
+    // 2. Try to send email notification
+    // We don't necessarily want to block the response if email fails, 
+    // but the user wants it fully functional, so we'll try-catch specifically for email
+    try {
+      await sendEmail({
+        name,
+        email,
+        subject,
+        message,
+      });
+    } catch (emailError) {
+      console.error('Database saved, but email notification failed:', emailError);
+      // We still return 201 because the message IS saved in the DB
+    }
+
     res.status(201).json({
       success: true,
-      message: 'Email sent successfully',
+      message: 'Message received successfully',
+      data: newMessage,
     });
   } catch (error) {
-    console.error(error);
-
-    res.status(500).json({
-      success: false,
-      message: 'Failed to send email',
-    });
+    next(error);
   }
 };
 
