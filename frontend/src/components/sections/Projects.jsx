@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import { HiExternalLink, HiCode, HiExclamationCircle } from 'react-icons/hi';
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { GlassCard } from "@/components/ui/GlassCard";
+import { Button } from "@/components/ui/Button";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { fetchProjects } from "@/services/projectService";
+import { cn } from "@/utils/cn";
 
 const fallbackProjects = [
   {
@@ -226,6 +229,7 @@ export function Projects() {
             );
           })}
         </div>
+        )}
       </div>
     </section>
   );
