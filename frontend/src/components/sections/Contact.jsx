@@ -1,21 +1,35 @@
-import { useState } from 'react';
-import { motion } from 'framer-motion';
-import toast from 'react-hot-toast';
-import { HiMail, HiPhone, HiLocationMarker, HiPaperAirplane } from 'react-icons/hi';
-import { SectionHeading } from '@/components/ui/SectionHeading';
-import { GlassCard } from '@/components/ui/GlassCard';
-import { Button } from '@/components/ui/Button';
-import { useScrollAnimation } from '@/hooks/useScrollAnimation';
-import { sendMessage } from '@/services/messageService';
-import { siteConfig } from '@/data/portfolioData';
+import { useState } from "react";
+import toast from "react-hot-toast";
+import {
+  HiMail,
+  HiPhone,
+  HiLocationMarker,
+  HiPaperAirplane,
+} from "react-icons/hi";
+import { SectionHeading } from "@/components/ui/SectionHeading";
+import { GlassCard } from "@/components/ui/GlassCard";
+import { Button } from "@/components/ui/Button";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
+import { sendMessage } from "@/services/messageService";
+import { siteConfig } from "@/data/portfolioData";
 
 const contactInfo = [
-  { icon: HiMail, label: 'Email', value: siteConfig.email, href: `mailto:${siteConfig.email}` },
-  { icon: HiPhone, label: 'Phone', value: siteConfig.phone, href: `tel:${siteConfig.phone}` },
-  { icon: HiLocationMarker, label: 'Location', value: siteConfig.location },
+  {
+    icon: HiMail,
+    label: "Email",
+    value: siteConfig.email,
+    href: `mailto:${siteConfig.email}`,
+  },
+  {
+    icon: HiPhone,
+    label: "Phone",
+    value: siteConfig.phone,
+    href: `tel:${siteConfig.phone}`,
+  },
+  { icon: HiLocationMarker, label: "Location", value: siteConfig.location },
 ];
 
-const initialForm = { name: '', email: '', subject: '', message: '' };
+const initialForm = { name: "", email: "", subject: "", message: "" };
 
 export function Contact() {
   const [form, setForm] = useState(initialForm);
@@ -31,16 +45,16 @@ export function Contact() {
     setSubmitting(true);
     try {
       await sendMessage(form);
-      toast.success('Message sent! I will get back to you soon.');
+      toast.success("Message sent! I will get back to you soon.");
       setForm(initialForm);
     } catch (err) {
-      toast.error(err.message || 'Failed to send message. Please try again.');
+      toast.error(err.message || "Failed to send message. Please try again.");
     } finally {
       setSubmitting(false);
     }
   };
 
-  const inputClass = 'input-field';
+  const inputClass = "input-field";
 
   return (
     <section id="contact" className="section-padding">
@@ -50,12 +64,18 @@ export function Contact() {
         <div ref={ref} className="grid lg:grid-cols-5 gap-8 lg:gap-12">
           <div className="lg:col-span-2 space-y-4">
             {contactInfo.map((item) => (
-              <GlassCard key={item.label} className="!p-5 flex items-center gap-4" hover={false}>
+              <GlassCard
+                key={item.label}
+                className="!p-5 flex items-center gap-4"
+                hover={false}
+              >
                 <div className="icon-box !w-12 !h-12">
                   <item.icon className="w-6 h-6" />
                 </div>
                 <div>
-                  <p className="text-xs uppercase tracking-widest text-slate-500 mb-1">{item.label}</p>
+                  <p className="text-xs uppercase tracking-widest text-slate-500 mb-1">
+                    {item.label}
+                  </p>
                   {item.href ? (
                     <a
                       href={item.href}
@@ -75,7 +95,10 @@ export function Contact() {
             <form onSubmit={handleSubmit} className="space-y-5">
               <div className="grid sm:grid-cols-2 gap-5">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium mb-2">
+                  <label
+                    htmlFor="name"
+                    className="block text-sm font-medium mb-2"
+                  >
                     Name
                   </label>
                   <input
@@ -90,7 +113,10 @@ export function Contact() {
                   />
                 </div>
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium mb-2">
+                  <label
+                    htmlFor="email"
+                    className="block text-sm font-medium mb-2"
+                  >
                     Email
                   </label>
                   <input
@@ -106,12 +132,15 @@ export function Contact() {
                 </div>
               </div>
               <div>
-                <label htmlFor="subject" className="block text-sm font-medium mb-2">
+                <label
+                  htmlFor="subject"
+                  className="block text-sm font-medium mb-2"
+                >
                   Subject
                 </label>
                 <input
                   id="subject"
-                    name="subject"
+                  name="subject"
                   type="text"
                   value={form.subject}
                   onChange={handleChange}
@@ -120,7 +149,10 @@ export function Contact() {
                 />
               </div>
               <div>
-                <label htmlFor="message" className="block text-sm font-medium mb-2">
+                <label
+                  htmlFor="message"
+                  className="block text-sm font-medium mb-2"
+                >
                   Message
                 </label>
                 <textarea
@@ -130,7 +162,7 @@ export function Contact() {
                   rows={5}
                   value={form.message}
                   onChange={handleChange}
-                  className={inputClass + ' resize-none'}
+                  className={inputClass + " resize-none"}
                   placeholder="Tell me about your project..."
                 />
               </div>
@@ -139,7 +171,9 @@ export function Contact() {
                 className="w-full sm:w-auto"
                 disabled={submitting}
               >
-                {submitting ? 'Sending...' : (
+                {submitting ? (
+                  "Sending..."
+                ) : (
                   <>
                     <HiPaperAirplane className="w-5 h-5" />
                     Send Message

@@ -1,18 +1,23 @@
-import { createContext, useContext, useEffect, useState } from 'react';
-import { onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'firebase/auth';
-import { auth, isFirebaseConfigured } from '@/config/firebase';
+import { createContext, useContext, useEffect, useRef, useState } from "react";
+import {
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signOut,
+} from "firebase/auth";
+import { auth, isFirebaseConfigured } from "@/config/firebase";
 
 const AuthContext = createContext(null);
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(isFirebaseConfigured);
+  const [loading, setLoading] = useState(!auth ? false : isFirebaseConfigured);
+  const initRef = useRef(false);
 
   useEffect(() => {
-    if (!auth) {
-      setLoading(false);
+    if (initRef.current || !auth) {
       return;
     }
+    initRef.current = true;
 
     const unsub = onAuthStateChanged(auth, (u) => {
       setUser(u);
@@ -22,7 +27,7 @@ export function AuthProvider({ children }) {
   }, []);
 
   const login = (email, password) => {
-    if (!auth) return Promise.reject(new Error('Firebase is not configured'));
+    if (!auth) return Promise.reject(new Error("Firebase is not configured"));
     return signInWithEmailAndPassword(auth, email, password);
   };
 
@@ -35,15 +40,23 @@ export function AuthProvider({ children }) {
 
   return (
     <AuthContext.Provider
-      value={{ user, loading, login, logout, getIdToken, isConfigured: isFirebaseConfigured }}
+      value={{
+        user,
+        loading,
+        login,
+        logout,
+        getIdToken,
+        isConfigured: isFirebaseConfigured,
+      }}
     >
       {children}
     </AuthContext.Provider>
   );
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useAuth = () => {
   const ctx = useContext(AuthContext);
-  if (!ctx) throw new Error('useAuth must be used within AuthProvider');
+  if (!ctx) throw new Error("useAuth must be used within AuthProvider");
   return ctx;
 };

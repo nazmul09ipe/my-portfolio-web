@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
 import { HiExternalLink, HiCode } from "react-icons/hi";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { GlassCard } from "@/components/ui/GlassCard";
@@ -95,11 +94,8 @@ export function Projects() {
           ref={ref}
           className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
         >
-          {projects.map((project, i) => (
-            <GlassCard
-              key={project._id || i}
-              className="flex flex-col h-full group"
-            >
+          {projects.map((project) => (
+            <GlassCard key={project._id} className="flex flex-col h-full group">
               <div className="aspect-video overflow-hidden rounded-xl border border-white/[0.06] mb-6">
                 <img
                   src={project.image}
