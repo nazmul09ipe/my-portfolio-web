@@ -1,5 +1,5 @@
-import { useEffect, useRef } from 'react';
-import { motion, useSpring, useMotionValue } from 'framer-motion';
+import { useEffect, useRef } from "react";
+import { motion, useSpring, useMotionValue } from "framer-motion";
 
 export function MouseGlow() {
   const mouseX = useMotionValue(0);
@@ -11,8 +11,10 @@ export function MouseGlow() {
 
   useEffect(() => {
     const isMobile = window.innerWidth < 768;
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
     if (isMobile || prefersReducedMotion) return;
 
     const handleMouseMove = (e) => {
@@ -20,9 +22,9 @@ export function MouseGlow() {
       mouseY.set(e.clientY);
     };
 
-    window.addEventListener('mousemove', handleMouseMove, { passive: true });
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, [mouseX]);
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, [mouseX, mouseY]);
 
   return (
     <motion.div
@@ -34,10 +36,11 @@ export function MouseGlow() {
         style={{
           x: glowX,
           y: glowY,
-          translateX: '-50%',
-          translateY: '-50%',
-          background: 'radial-gradient(circle, var(--color-brand-500) 0%, transparent 70%)',
-          filter: 'blur(80px)',
+          translateX: "-50%",
+          translateY: "-50%",
+          background:
+            "radial-gradient(circle, var(--color-brand-500) 0%, transparent 70%)",
+          filter: "blur(80px)",
         }}
       />
     </motion.div>

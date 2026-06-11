@@ -1,33 +1,46 @@
-import { useEffect, useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import gsap from 'gsap';
+import { useEffect, useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import gsap from "gsap";
 
 export function AnimatedBackground() {
   const containerRef = useRef(null);
+  const animationsRef = useRef([]);
   const { scrollYProgress } = useScroll();
-  
+
   const rotate = useTransform(scrollYProgress, [0, 1], [0, 360]);
 
   useEffect(() => {
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
     const isMobile = window.innerWidth < 768;
-    
-    if (prefersReducedMotion || isMobile) return; // Disable complex animations on mobile/reduced motion
 
-    const orbs = containerRef.current?.querySelectorAll('.orb');
+    if (prefersReducedMotion || isMobile) return;
+
+    const orbs = containerRef.current?.querySelectorAll(".orb");
     if (!orbs?.length) return;
 
+    // Kill existing animations before creating new ones
+    animationsRef.current.forEach((anim) => anim?.kill?.());
+    animationsRef.current = [];
+
     orbs.forEach((orb, i) => {
-      gsap.to(orb, {
+      const anim = gsap.to(orb, {
         x: `random(-100, 100)`,
         y: `random(-60, 60)`,
         scale: `random(0.9, 1.1)`,
         duration: 20 + i * 5,
         repeat: -1,
         yoyo: true,
-        ease: 'sine.inOut',
+        ease: "sine.inOut",
       });
+      animationsRef.current.push(anim);
     });
+
+    return () => {
+      animationsRef.current.forEach((anim) => anim?.kill?.());
+      animationsRef.current = [];
+    };
   }, []);
 
   return (
@@ -37,7 +50,7 @@ export function AnimatedBackground() {
       aria-hidden
     >
       {/* Dynamic Gradient Mesh */}
-      <motion.div 
+      <motion.div
         style={{ rotate }}
         className="absolute inset-[-50%] opacity-30 dark:opacity-40"
       >
@@ -52,12 +65,12 @@ export function AnimatedBackground() {
       <div className="orb absolute top-[40%] right-[20%] w-[30vw] h-[30vw] rounded-full bg-linear-to-bl from-accent-cyan-400/10 to-transparent blur-[90px]" />
 
       {/* Grid Pattern Overlay */}
-      <div 
-        className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05]" 
-        style={{ 
+      <div
+        className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05]"
+        style={{
           backgroundImage: `radial-gradient(circle at 2px 2px, rgba(255,255,255,0.15) 1px, transparent 0)`,
-          backgroundSize: '48px 48px'
-        }} 
+          backgroundSize: "48px 48px",
+        }}
       />
     </div>
   );

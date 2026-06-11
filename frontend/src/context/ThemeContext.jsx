@@ -22,7 +22,7 @@ export function ThemeProvider({ children }) {
     localStorage.setItem(STORAGE_KEY, theme);
   }, [theme]);
 
-  const toggleTheme = () => setTheme(toggleThemeHelper);
+  const toggleTheme = () => setTheme((t) => toggleThemeHelper(t));
 
   return (
     <ThemeContext.Provider

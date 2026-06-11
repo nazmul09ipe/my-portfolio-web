@@ -43,7 +43,7 @@ export function Contact() {
 
     // Clear error when user starts typing
     if (errors[name]) {
-      setErrors(prev => {
+      setErrors((prev) => {
         const newErrors = { ...prev };
         delete newErrors[name];
         return newErrors;
@@ -72,12 +72,14 @@ export function Contact() {
     }
 
     setSubmitting(true);
-    const toastId = toast.loading("Sending your transmission to the digital core...");
+    const toastId = toast.loading(
+      "Sending your transmission to the digital core...",
+    );
     try {
       await sendMessage(form);
-      toast.success("Transmission Received! I will reach out shortly.", { 
+      toast.success("Transmission Received! I will reach out shortly.", {
         id: toastId,
-        icon: '🚀',
+        icon: "🚀",
       });
       setForm(initialForm);
       setErrors({});
@@ -85,10 +87,10 @@ export function Contact() {
       console.error("Contact Form Error:", err);
       const isUnavailable = err.status === 503;
       toast.error(
-        isUnavailable 
+        isUnavailable
           ? "The message service is temporarily overloaded. Please try again in a few minutes or email me directly."
-          : (err.message || "Failed to send message. Please try again later."), 
-        { id: toastId, duration: 6000 }
+          : err.message || "Failed to send message. Please try again later.",
+        { id: toastId, duration: 6000 },
       );
     } finally {
       setSubmitting(false);
@@ -164,11 +166,11 @@ export function Contact() {
                 <div>
                   <label
                     htmlFor="email"
-                  className="block text-sm font-medium mb-2"
-                >
+                    className="block text-sm font-medium mb-2"
+                  >
                     Email
-                </label>
-                <input
+                  </label>
+                  <input
                     id="email"
                     name="email"
                     type="email"
@@ -179,7 +181,7 @@ export function Contact() {
                     placeholder="you@email.com"
                     aria-invalid={!!errors.email}
                     aria-describedby={errors.email ? "email-error" : undefined}
-                />
+                  />
                   {errors.email && (
                     <p id="email-error" className="mt-1 text-sm text-red-500">
                       {errors.email}
@@ -221,14 +223,16 @@ export function Contact() {
                   className={`${inputClass} ${errors.message ? errorClass : ""} resize-none`}
                   placeholder="Tell me about your project..."
                   aria-invalid={!!errors.message}
-                  aria-describedby={errors.message ? "message-error" : undefined}
+                  aria-describedby={
+                    errors.message ? "message-error" : undefined
+                  }
                 />
                 {errors.message && (
                   <p id="message-error" className="mt-1 text-sm text-red-500">
                     {errors.message}
                   </p>
                 )}
-        </div>
+              </div>
               <Button
                 type="submit"
                 className="w-full sm:w-auto"
@@ -245,9 +249,8 @@ export function Contact() {
               </Button>
             </form>
           </GlassCard>
-      </div>
+        </div>
       </div>
     </section>
   );
 }
-
